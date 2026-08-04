@@ -1,0 +1,12 @@
+# 财经新闻 + 行情 MCP（Yahoo / CNBC / RSS / 鉅亨網 / OHLCV）
+yfinance>=0.2.54
+ycnbc>=1.0.12
+feedparser>=6.0.11
+pyyaml>=6.0.2
+pydantic>=2.9.0
+trafilatura>=2.0.0
+# Investing.com 第二行情源（包名 investpy）
+investpy>=1.0.7
+setuptools<81
+# mcp 2.x 移除了 FastMCP；本项目使用官方 SDK 自带的 FastMCP
+mcp>=1.6.0,<2

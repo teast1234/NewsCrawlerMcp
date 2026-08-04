@@ -1,0 +1,365 @@
+# Yahoo 正规报价符号 → Investing.com（investpy / investingpy）映射
+# 用于 /api/market/history/investing
+# 字段说明：
+#   product: stocks | indices | cryptos | commodities | bonds | etfs
+#   investing_name: 传给 investpy get_*_historical_data 的名称参数
+#   investing_symbol: Investing 侧符号（便于排查）
+#   country: 股票/指数/ETF 等多数字段需要；加密货币可省略
+#   investing_id / tag / exchange: 优先走 search 对象拉历史（更稳）
+#   quote_type: 对齐 Yahoo HistoryResponse.quoteType
+#   enabled: false 表示已知无可靠映射，调用时直接报错
+
+mappings:
+  "^NDX":
+    product: indices
+    country: united states
+    investing_id: 20
+    investing_symbol: NDX
+    investing_name: Nasdaq 100
+    tag: nq-100
+    exchange: NASDAQ
+    quote_type: INDEX
+
+  "^IXIC":
+    product: indices
+    country: united states
+    investing_id: 14958
+    investing_symbol: IXIC
+    investing_name: Nasdaq
+    tag: nasdaq-composite
+    exchange: NASDAQ
+    quote_type: INDEX
+
+  "^DJI":
+    product: indices
+    country: united states
+    investing_id: 169
+    investing_symbol: DJI
+    investing_name: Dow 30
+    tag: us-30
+    exchange: NYSE
+    quote_type: INDEX
+
+  "^GSPC":
+    product: indices
+    country: united states
+    investing_id: 166
+    investing_symbol: SPX
+    investing_name: S&P 500
+    tag: us-spx-500
+    exchange: NYSE
+    quote_type: INDEX
+
+  "^KS11":
+    product: indices
+    country: south korea
+    investing_id: 37426
+    investing_symbol: KS11
+    investing_name: KOSPI
+    tag: kospi
+    quote_type: INDEX
+
+  "^N225":
+    product: indices
+    country: japan
+    investing_id: 178
+    investing_symbol: N225
+    investing_name: Nikkei 225
+    tag: japan-ni225
+    quote_type: INDEX
+
+  "^GDAXI":
+    product: indices
+    country: germany
+    investing_id: 172
+    investing_symbol: GDAXI
+    investing_name: DAX
+    tag: germany-30
+    quote_type: INDEX
+
+  "BTC-USD":
+    product: cryptos
+    investing_id: 1057391
+    investing_symbol: BTC
+    investing_name: Bitcoin
+    tag: bitcoin
+    quote_type: CRYPTOCURRENCY
+
+  "ETH-USD":
+    product: cryptos
+    investing_id: 1061443
+    investing_symbol: ETH
+    investing_name: Ethereum
+    tag: ethereum
+    quote_type: CRYPTOCURRENCY
+
+  "USDT-USD":
+    product: cryptos
+    investing_id: 1061453
+    investing_symbol: USDT
+    investing_name: Tether
+    tag: tether
+    quote_type: CRYPTOCURRENCY
+
+  "BNB-USD":
+    product: cryptos
+    investing_id: 1061448
+    investing_symbol: BNB
+    investing_name: Binance Coin
+    tag: binance-coin
+    quote_type: CRYPTOCURRENCY
+
+  "SOL-USD":
+    product: cryptos
+    investing_id: 1161528
+    investing_symbol: SOL
+    investing_name: Solana
+    tag: solana
+    quote_type: CRYPTOCURRENCY
+
+  "DOGE-USD":
+    product: cryptos
+    investing_id: 1061477
+    investing_symbol: DOGE
+    investing_name: Dogecoin
+    tag: dogecoin
+    quote_type: CRYPTOCURRENCY
+
+  "XRP-USD":
+    product: cryptos
+    investing_id: 1057392
+    investing_symbol: XRP
+    investing_name: XRP
+    tag: xrp
+    quote_type: CRYPTOCURRENCY
+
+  "DOT-USD":
+    product: cryptos
+    investing_id: 1165465
+    investing_symbol: DOT
+    investing_name: Polkadot
+    tag: polkadot-new
+    quote_type: CRYPTOCURRENCY
+
+  "LTC-USD":
+    product: cryptos
+    investing_id: 1061445
+    investing_symbol: LTC
+    investing_name: Litecoin
+    tag: litecoin
+    quote_type: CRYPTOCURRENCY
+
+  "CL=F":
+    product: commodities
+    country: united states
+    investing_id: 8849
+    investing_name: Crude Oil WTI
+    tag: crude-oil
+    quote_type: FUTURE
+
+  "BZ=F":
+    product: commodities
+    country: united kingdom
+    investing_id: 8833
+    investing_name: Brent Oil
+    tag: brent-oil
+    quote_type: FUTURE
+
+  "GC=F":
+    product: commodities
+    investing_id: 8830
+    investing_name: Gold
+    tag: gold
+    quote_type: FUTURE
+
+  "SI=F":
+    product: commodities
+    investing_id: 8836
+    investing_name: Silver
+    tag: silver
+    quote_type: FUTURE
+
+  "HG=F":
+    product: commodities
+    country: united states
+    investing_id: 8831
+    investing_name: Copper
+    tag: copper
+    quote_type: FUTURE
+
+  "NG=F":
+    product: commodities
+    country: united states
+    investing_id: 8862
+    investing_name: Natural Gas
+    tag: natural-gas
+    quote_type: FUTURE
+
+  "^TNX":
+    product: bonds
+    country: united states
+    investing_id: 23705
+    investing_name: U.S. 10Y
+    tag: u.s.-10-year-bond-yield
+    quote_type: INDEX
+    note: Investing 为国债收益率，不是期货
+
+  "^TYX":
+    product: bonds
+    country: united states
+    investing_id: 23706
+    investing_name: U.S. 30Y
+    tag: u.s.-30-year-bond-yield
+    quote_type: INDEX
+    note: Investing 为国债收益率，不是期货
+
+  "AAPL":
+    product: stocks
+    country: united states
+    investing_id: 6408
+    investing_symbol: AAPL
+    investing_name: Apple
+    tag: apple-computer-inc
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "MSFT":
+    product: stocks
+    country: united states
+    investing_id: 252
+    investing_symbol: MSFT
+    investing_name: Microsoft
+    tag: microsoft-corp
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "GOOG":
+    product: stocks
+    country: united states
+    investing_id: 100160
+    investing_symbol: GOOG
+    investing_name: Alphabet C
+    tag: google-inc-c
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "NVDA":
+    product: stocks
+    country: united states
+    investing_id: 6497
+    investing_symbol: NVDA
+    investing_name: NVIDIA
+    tag: nvidia-corp
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "AMD":
+    product: stocks
+    country: united states
+    investing_id: 8274
+    investing_symbol: AMD
+    investing_name: AMD
+    tag: adv-micro-device
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "MU":
+    product: stocks
+    country: united states
+    investing_id: 8092
+    investing_symbol: MU
+    investing_name: Micron
+    tag: micron-tech
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "QCOM":
+    product: stocks
+    country: united states
+    investing_id: 6376
+    investing_symbol: QCOM
+    investing_name: Qualcomm
+    tag: qualcomm-inc
+    exchange: NASDAQ
+    quote_type: EQUITY
+
+  "TSM":
+    product: stocks
+    country: united states
+    investing_id: 32306
+    investing_symbol: TSM
+    investing_name: Taiwan Semiconductor
+    tag: taiwan-semicond.manufacturing-co
+    exchange: NYSE
+    quote_type: EQUITY
+
+  "META":
+    product: stocks
+    country: united states
+    investing_id: 26490
+    investing_symbol: FB
+    investing_name: Facebook
+    tag: facebook-inc
+    exchange: NASDAQ
+    quote_type: EQUITY
+    note: 本地映射表较旧，Investing 现站可能已改为 META；若拉数失败请更新 id
+
+  "005930.KS":
+    product: stocks
+    country: south korea
+    investing_id: 43433
+    investing_symbol: "005930"
+    investing_name: Samsung Electronics Co
+    tag: samsung-electronics-co-ltd
+    quote_type: EQUITY
+
+  "SKHY":
+    product: stocks
+    country: south korea
+    investing_id: 43430
+    investing_symbol: "000660"
+    investing_name: SK Hynix Inc
+    tag: sk-hynix-inc
+    quote_type: EQUITY
+    note: Yahoo SKHY 近似对应韩股 000660
+
+  "285A.T":
+    product: stocks
+    country: japan
+    investing_id: 100158
+    investing_symbol: "6723"
+    investing_name: Renesas Electronics Corp
+    tag: renesas-electronics-corp
+    quote_type: EQUITY
+    note: Investing 仍用东证旧代码 6723
+
+  # 以下暂无可靠映射（CSV/搜索未覆盖），显式关闭
+  "RKLB":
+    enabled: false
+    product: stocks
+    country: united states
+    note: Investing 映射待补
+
+  "ARM":
+    enabled: false
+    product: stocks
+    country: united states
+    note: Investing 映射待补（勿与其它国家 ARM 代码混淆）
+
+  "SPCX":
+    enabled: false
+    product: etfs
+    country: united states
+    note: Investing 映射待补
+
+  "UTWO":
+    enabled: false
+    product: etfs
+    country: united states
+    note: Investing 映射待补
+
+  "ZT=F":
+    enabled: false
+    product: commodities
+    country: united states
+    note: 2Y T-Note 期货无可靠条目；勿误用 U.S. 2Y 收益率

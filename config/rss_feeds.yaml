@@ -1,0 +1,211 @@
+# =============================================================================
+# RSS 新闻源配置文件
+# =============================================================================
+#
+# 【用途】
+#   统一管理 newstock 项目的全部 RSS 数据源。只需编辑本文件即可增删源，无需改代码。
+#
+# 【生效方式】
+#   修改后重启 FastAPI 服务：
+#     python -m app.main --serve --port 8090
+#
+# 【筛选原则】（2026-08 清理）
+#   保留：可映射到可交易标的 / 宏观·监管·机构催化、美股与全球市场主线
+#   移除：A 股相关、体育/综合社会新闻主源、个人理财碎闻、无法映射的本地小市场源、探测失败源
+#
+# 【唯一配置源】
+#   所有 RSS 源仅在 config/rss_feeds.yaml 中维护。
+#
+# =============================================================================
+
+per_source_limit: 5
+
+categories:
+
+  # ---------------------------------------------------------------------------
+  # GlobeNewswire — 美股上市公司官方新闻稿 / 公告（英文）
+  # ---------------------------------------------------------------------------
+  GlobeNewswire:
+    label: "GlobeNewswire 公司公告"
+    sources:
+      - name: "GlobeNewswire - 上市公司新闻（总流）"
+        url: "https://www.globenewswire.com/RssFeed/orgclass/1/feedTitle/GlobeNewswire%20-%20News%20about%20Public%20Companies"
+        note: "全部上市公司 press release 总流"
+
+  # ---------------------------------------------------------------------------
+  # 彭博社 Bloomberg — 官方公开 RSS
+  # ---------------------------------------------------------------------------
+  彭博社:
+    label: "彭博社 Bloomberg — 官方公开 RSS"
+    sources:
+      - name: "Bloomberg - Markets"
+        url: "https://feeds.bloomberg.com/markets/news.rss"
+        note: "全球市场要闻（官方）"
+
+      - name: "Bloomberg - Economics"
+        url: "https://feeds.bloomberg.com/economics/news.rss"
+        note: "宏观经济（官方）"
+
+      - name: "Bloomberg - Business"
+        url: "https://feeds.bloomberg.com/business/news.rss"
+        note: "商业综合（官方）"
+
+      - name: "Bloomberg - Opinion"
+        url: "https://feeds.bloomberg.com/bview/news.rss"
+        note: "观点评论（官方）"
+
+  # ---------------------------------------------------------------------------
+  # 金融时报 FT — 官方公开 RSS
+  # ---------------------------------------------------------------------------
+  金融时报:
+    label: "金融时报 FT — 官方公开 RSS"
+    sources:
+      - name: "FT - Markets"
+        url: "https://www.ft.com/rss/markets"
+        note: "FT 市场版（官方）"
+
+  # ---------------------------------------------------------------------------
+  # 摩根士丹利 — 全文 RSS（via quanwenrss.com）
+  # ---------------------------------------------------------------------------
+  摩根士丹利:
+    label: "摩根士丹利 — 全文 RSS（quanwenrss 代理）"
+    sources:
+      - name: "摩根士丹利 - 全球市场"
+        url: "https://quanwenrss.com/morganstanley/global"
+        note: "摩根士丹利全球市场全文"
+
+  # ---------------------------------------------------------------------------
+  # BBC — 商业 / 科技（官方；已去掉 World 综合/体育混杂源）
+  # ---------------------------------------------------------------------------
+  BBC:
+    label: "BBC — 官方公开 RSS（商业/科技）"
+    sources:
+      - name: "BBC - Business"
+        url: "http://feeds.bbci.co.uk/news/business/rss.xml"
+        note: "BBC 商业（官方）"
+
+      - name: "BBC - Technology"
+        url: "https://feeds.bbci.co.uk/news/technology/rss.xml"
+        note: "BBC 科技（官方）"
+
+  # ---------------------------------------------------------------------------
+  # 纽约时报 — 商业
+  # ---------------------------------------------------------------------------
+  纽约时报:
+    label: "纽约时报 — 官方公开 RSS（商业）"
+    sources:
+      - name: "NYT - Business"
+        url: "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
+        note: "NYT 商业（官方）"
+
+  # ---------------------------------------------------------------------------
+  # 美国经济 — 美股 / 英文主流市场媒体
+  # ---------------------------------------------------------------------------
+  美国经济:
+    label: "美国经济 — 美股 / 英文媒体"
+    sources:
+      - name: "华尔街日报 - 商业"
+        url: "https://feeds.content.dowjones.io/public/rss/WSJcomUSBusiness"
+        note: "WSJ US Business（官方 Dow Jones）"
+
+      - name: "华尔街日报 - 市场"
+        url: "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+        note: "WSJ Markets（官方 Dow Jones）"
+
+      - name: "华尔街日报 - 国际"
+        url: "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+        note: "WSJ World News（官方 Dow Jones）"
+
+      - name: "华尔街日报 - 评论"
+        url: "https://feeds.content.dowjones.io/public/rss/RSSOpinion"
+        note: "WSJ Opinion（官方 Dow Jones）"
+
+      - name: "MarketWatch - Top Stories"
+        url: "https://www.marketwatch.com/rss/topstories"
+        note: "MarketWatch 头条"
+
+      - name: "ETF Trends"
+        url: "https://www.etftrends.com/feed/"
+        note: "ETF 行业资讯"
+
+      - name: "CNBC - 美国要闻"
+        url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+        note: "CNBC US Top News and Analysis"
+
+      - name: "CNBC - 国际要闻"
+        url: "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+        note: "CNBC International Top News and Analysis"
+
+      - name: "CNBC - Economy"
+        url: "https://www.cnbc.com/id/20910258/device/rss/rss.html"
+        note: "CNBC Economy"
+
+      - name: "CNBC - Finance"
+        url: "https://www.cnbc.com/id/10000664/device/rss/rss.html"
+        note: "CNBC Finance"
+
+      - name: "Fortune"
+        url: "https://fortune.com/feed"
+        note: "Fortune 商业杂志"
+
+      - name: "Yahoo Finance"
+        url: "https://finance.yahoo.com/news/rssindex"
+        note: "Yahoo Finance 新闻索引"
+
+      - name: "Seeking Alpha - 主站"
+        url: "https://seekingalpha.com/feed.xml"
+        note: "Seeking Alpha 主 Feed"
+
+      - name: "Nasdaq - Markets"
+        url: "https://www.nasdaq.com/feed/rssoutbound?category=Markets"
+        note: "纳斯达克市场新闻"
+
+      - name: "Economist - Finance"
+        url: "https://www.economist.com/finance-and-economics/rss.xml"
+        note: "经济学人财经"
+
+      - name: "Financial Post"
+        url: "https://business.financialpost.com/feed"
+        note: "加拿大 Financial Post"
+
+  # ---------------------------------------------------------------------------
+  # 世界经济 — 全球宏观（去掉难映射的本地小市场源）
+  # ---------------------------------------------------------------------------
+  世界经济:
+    label: "世界经济 — 全球宏观"
+    sources:
+      - name: "华尔街日报 - 经济"
+        url: "https://feeds.content.dowjones.io/public/rss/socialeconomyfeed"
+        note: "WSJ Social Economy"
+
+      - name: "Investing.com - 全部新闻"
+        url: "https://www.investing.com/rss/news.rss"
+        note: "Investing.com All News"
+
+      - name: "Fabio Natalucci Post"
+        url: "http://feeds.feedburner.com/FabioNatalucciPost"
+        note: "IMF Fabio Natalucci 博客"
+
+  # ---------------------------------------------------------------------------
+  # 官方机构 — 监管 / 宏观政策
+  # ---------------------------------------------------------------------------
+  官方机构:
+    label: "官方机构 — SEC 等公开监管源"
+    sources:
+      - name: "SEC - Press Releases"
+        url: "https://www.sec.gov/news/pressreleases.rss"
+        note: "美国证监会新闻稿（官方）"
+
+      - name: "SEC - Speeches"
+        url: "https://www.sec.gov/news/speeches.rss"
+        note: "美国证监会讲话（官方）"
+
+  # ---------------------------------------------------------------------------
+  # 宏观人物 / 社区（仅保留可映射宏观观点）
+  # ---------------------------------------------------------------------------
+  财经播客与社区:
+    label: "宏观人物 — 可映射宏观观点"
+    sources:
+      - name: "Ray Dalio"
+        url: "https://api.xgo.ing/rss/user/4838204097ed422eac24ad48e68dc3ff"
+        note: "Ray Dalio X/Twitter RSS 代理"
